@@ -1,0 +1,22 @@
+<? include_once("views/common/header.html"); ?>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Пол</th>
+      <th>Сокр.</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <? foreach($genders as $gender): ?>
+    <tr>
+      <td><?= $gender['gender_id']; ?></td>
+      <td><?= $gender['gender_name']; ?></td>
+      <td><?= $gender['gender_short_name']; ?></td>
+      <td></td>
+    </tr>
+    <? endforeach ?>
+  </tbody>
+</table>
+<? include_once("views/common/footer.html"); ?>

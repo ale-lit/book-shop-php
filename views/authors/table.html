@@ -1,0 +1,20 @@
+<? include_once("views/common/header.html"); ?>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>ФИО</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <? foreach($authors as $author): ?>
+    <tr>
+      <td><?= $author['author_id']; ?></td>
+      <td><?= $author['author_fio']; ?></td>
+      <td></td>
+    </tr>
+    <? endforeach ?>
+  </tbody>
+</table>
+<? include_once("views/common/footer.html"); ?>

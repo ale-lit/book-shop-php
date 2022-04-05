@@ -1,0 +1,20 @@
+<? include_once("views/common/header.html"); ?>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Название</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <? foreach($genres as $genre): ?>
+    <tr>
+      <td><?= $genre['genre_id']; ?></td>
+      <td><?= $genre['genre_name']; ?></td>
+      <td></td>
+    </tr>
+    <? endforeach ?>
+  </tbody>
+</table>
+<? include_once("views/common/footer.html"); ?>
