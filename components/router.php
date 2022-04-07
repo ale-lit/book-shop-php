@@ -1,9 +1,5 @@
 <?php
 
-  require_once("controllers/authorcontroller.php");
-  require_once("controllers/genrecontroller.php");
-  require_once("controllers/gendercontroller.php");
-
   class Router {
     private $routes;
 
