@@ -1,0 +1,28 @@
+.header {
+  margin-bottom: 25px;
+}
+
+.add-button {
+  margin: 0 auto;
+  display: block;
+  width: 300px;
+  margin-bottom: 25px;
+}
+
+.table {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.table .action {
+  text-align: right;
+}
+
+.footer {
+  margin-top: 25px;
+  background: #2c2c2c;
+  min-height: 100px;
+  text-align: center;
+  color: #ccc;
+  padding: 5px;
+}

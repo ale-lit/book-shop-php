@@ -1,7 +1,6 @@
 <?php
 
-  class Author {   
-
+  class Author {
     private $connect;
 
     public function __construct() {
@@ -10,16 +9,39 @@
     }
 
     public function getAll() {      
-      $query = "SELECT * FROM `authors`";
+      $query = "SELECT * FROM `authors` WHERE `author_is_deleted` = 0";
       $result = mysqli_query($this->connect, $query);
       return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
     public function insert($fio) {
-      require_once('configs/db.php');
-      $connect = mysqli_connect($db['HOST'], $db['USER'], $db['PASSWORD'], $db['DB_NAME']);
-      mysqli_set_charset($connect, $db['CHARSET']);
       $query = "INSERT INTO `authors` SET `author_fio` = '$fio'";
+      return mysqli_query($this->connect, $query);
+    }
+
+    public function getById($id) {
+      $query = "SELECT *
+                FROM `authors`
+                WHERE `author_id` = $id";
+      $result = mysqli_query($this->connect, $query);
+      return mysqli_fetch_assoc($result);
+    }
+
+    public function edit($fio, $id) {
+      $query = "
+        UPDATE `authors`
+        SET `author_fio` = '$fio'
+        WHERE `author_id` = $id;
+      ";
+      return mysqli_query($this->connect, $query);
+    }
+
+    public function remove($id) {
+      $query = "
+        UPDATE `authors`
+        SET `author_is_deleted` = 1
+        WHERE `author_id` = $id;
+      ";
       return mysqli_query($this->connect, $query);
     }
   }

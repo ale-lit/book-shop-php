@@ -1,10 +1,11 @@
 <? include_once("views/common/header.html"); ?>
-<table>
+<a class="btn btn-primary add-button" href="<?= FULL_SITE_ROOT . 'author/add'; ?>">Добавить</a>
+<table class="table">
   <thead>
     <tr>
       <th>ID</th>
       <th>ФИО</th>
-      <th>Действие</th>
+      <th class="action">Действие</th>
     </tr>
   </thead>
   <tbody>
@@ -12,7 +13,10 @@
     <tr>
       <td><?= $author['author_id']; ?></td>
       <td><?= $author['author_fio']; ?></td>
-      <td></td>
+      <td class="action">
+        <a type="button" class="btn btn-success" href="<?= FULL_SITE_ROOT . 'author/edit/' . $author['author_id']; ?>">Изменить</a>
+        <button type="button" class="btn btn-danger" onclick="remove('author', <?= $author['author_id']; ?>)">Удалить</button>
+      </td>
     </tr>
     <? endforeach ?>
   </tbody>

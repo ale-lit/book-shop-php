@@ -1,11 +1,14 @@
 <?php
 
-  require_once("models/gender.php");
-
   class GendersController {
+    private $genderModel;
+
+    public function __construct() {
+      $this->genderModel = new Gender();
+    }
+
     public function actionIndex() {
-      $genderModel = new Gender();
-      $genders = $genderModel->getAll();
+      $genders = $this->genderModel->getAll();
       $title = 'Пол';
       require_once("views/genders/table.html");
     }
