@@ -12,5 +12,9 @@
     ),
     'GendersController' => array(
       'genders' => 'index'
+    ),
+    'UsersController' => array(
+      'reg' => 'reg',
+      'auth' => 'auth'
     )
   );

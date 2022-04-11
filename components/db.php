@@ -1,15 +1,31 @@
 <?php
-  class DB {
-    private $connection;
+  final class DB {
+    private static $connection = null;
 
-    public function __construct() {
+    private function __construct() {
       require_once('configs/db.php');
-      $connect = mysqli_connect($db['HOST'], $db['USER'], $db['PASSWORD'], $db['DB_NAME']);
+      $connect = mysqli_connect($db['HOST'], $db['USER'], $db['PASSWORD'], 
+        $db['DB_NAME']);
       mysqli_set_charset($connect, $db['CHARSET']);
-      $this->connection = $connect;
+      self::$connection = $connect;
     }
 
-    public function getConnection() {
-      return $this->connection;
+    public static function getConnection() {
+      if(self::$connection == null) {
+        new self();
+      }
+      return self::$connection;
+    }
+
+    private function __clone() {
+
+    }
+
+    private function __sleep() {
+
+    }
+
+    private function __wakeup() {
+
     }
   }

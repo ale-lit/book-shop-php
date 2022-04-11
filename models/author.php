@@ -4,8 +4,7 @@
     private $connect;
 
     public function __construct() {
-      $db = new DB();
-      $this->connect = $db->getConnection();
+      $this->connect = DB::getConnection();
     }
 
     public function getAll() {      
