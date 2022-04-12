@@ -10,9 +10,15 @@
   <tbody>
     <? foreach($genders as $gender): ?>
     <tr>
-      <td><?= $gender['gender_id']; ?></td>
-      <td><?= $gender['gender_name']; ?></td>
-      <td><?= $gender['gender_short_name']; ?></td>
+      <td>
+        <?= $gender['gender_id']; ?>
+      </td>
+      <td>
+        <?= $gender['gender_name']; ?>
+      </td>
+      <td>
+        <?= $gender['gender_short_name']; ?>
+      </td>
     </tr>
     <? endforeach ?>
   </tbody>

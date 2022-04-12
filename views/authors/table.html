@@ -1,6 +1,6 @@
 <? include_once("views/common/header.html"); ?>
 <? if($this->isAuthorized): ?>
-  <a class="btn btn-primary add-button" href="<?= FULL_SITE_ROOT . 'author/add'; ?>">Добавить</a>
+<a class="btn btn-primary add-button" href="<?= FULL_SITE_ROOT . 'author/add'; ?>">Добавить</a>
 <? endif; ?>
 <table class="table">
   <thead>
@@ -13,13 +13,19 @@
   <tbody>
     <? foreach($authors as $author): ?>
     <tr>
-      <td><?= $author['author_id']; ?></td>
-      <td><?= $author['author_fio']; ?></td>
+      <td>
+        <?= $author['author_id']; ?>
+      </td>
+      <td>
+        <?= $author['author_fio']; ?>
+      </td>
       <td class="action">
-      <? if($this->isAuthorized): ?>
-        <a type="button" class="btn btn-success" href="<?= FULL_SITE_ROOT . 'author/edit/' . $author['author_id']; ?>">Изменить</a>
-        <button type="button" class="btn btn-danger" onclick="remove('author', <?= $author['author_id']; ?>)">Удалить</button>
-      <? endif; ?>
+        <? if($this->isAuthorized): ?>
+        <a type="button" class="btn btn-success"
+          href="<?= FULL_SITE_ROOT . 'author/edit/' . $author['author_id']; ?>">Изменить</a>
+        <button type="button" class="btn btn-danger"
+          onclick="remove('author', <?= $author['author_id']; ?>)">Удалить</button>
+        <? endif; ?>
       </td>
     </tr>
     <? endforeach ?>

@@ -1,7 +1,7 @@
 <?php
 
-  require_once("configs/constants.php");
-  require_once("components/autoload.php");
+require_once("configs/constants.php");
+require_once("components/autoload.php");
 
-  $router = new Router();
-  $router->run();
+$router = new Router();
+$router->run();
