@@ -30,6 +30,24 @@
             <li class="nav-item">
               <a class="nav-link <?= $title==='Пол' ? 'active' : '' ?>" href="<?= FULL_SITE_ROOT . 'genders' ?>">Пол</a>
             </li>
+            <? if($this->isAuthorized): ?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= FULL_SITE_ROOT . 'logout' ?>">
+                  Выход
+                </a>
+              </li>
+            <? else: ?>
+              <li class="nav-item">
+                <a class="nav-link <?= $title==='Авторизация' ? 'active' : '' ?>" href="<?= FULL_SITE_ROOT . 'auth' ?>">
+                  Авторизация
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <?= $title==='Регистрация' ? 'active' : '' ?>" href="<?= FULL_SITE_ROOT . 'reg' ?>">
+                  Регистрация
+                </a>
+              </li>
+            <? endif; ?>
           </ul>
         </div>
       </div>

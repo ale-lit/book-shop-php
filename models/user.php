@@ -2,9 +2,11 @@
 
   class User {
     private $connect;
+    private $helper;
 
     public function __construct() {
       $this->connect = DB::getConnection();
+      $this->helper = new Helper();
     }
 
     public function checkIfUserExists($email) {
@@ -44,5 +46,54 @@
             `connect_token_time` = FROM_UNIXTIME($tokenTime);
       ";
       return mysqli_query($this->connect, $query);
+    }
+
+    public function checkIfUserAuthorized() {
+      if(!isset($_COOKIE['uid']) || !isset($_COOKIE['t']) || !isset($_COOKIE['tt'])) {
+        return false;
+      }
+
+      $userId = htmlentities($_COOKIE['uid']);
+      $token = htmlentities($_COOKIE['t']);
+      $tokenTime = htmlentities($_COOKIE['tt']);
+      $query = "
+        SELECT `connect_id`
+        FROM `connects`
+        WHERE `connect_user_id` = $userId
+          AND `connect_token` = '$token';
+      ";
+      $result = mysqli_query($this->connect, $query);
+      if(mysqli_num_rows($result) === 0) {
+        return false;
+      }
+      if($tokenTime < time()) {
+        $newToken = $this->helper->generateToken();
+        $newTokenTime = time() + 30 * 60;
+        setcookie("uid", $userId, time() + 2 * 24 * 3600, '/');
+        setcookie("t", $newToken, time() + 2 * 24 * 3600, '/');
+        setcookie("tt", $newTokenTime, time() + 2 * 24 * 3600, '/');
+        $connectId = $result['connect_id'];
+        $query = "
+          UPDATE `connects`
+            SET `token` = '$newToken',
+            `token_time` = FROM_UNIXTIME($newTokenTime)
+            WHERE `connect_id` = $connectId;
+        ";
+        mysqli_query($this->connect, $query);
+      }
+      return true;
+    }
+
+    public function logout() {
+      if(isset($_COOKIE['uid']) && !isset($_COOKIE['t'])) {
+        $userId = htmlentities($_COOKIE['uid']);
+        $token = htmlentities($_COOKIE['t']);
+        $query = "
+          DELETE FROM `connects`
+            WHERE `connect_user_id` = $userId
+            AND `connect_token` = '$token';
+        ";
+        return mysqli_query($this->connect, $query);
+      }
     }
   }

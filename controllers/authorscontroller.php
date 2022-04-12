@@ -2,9 +2,12 @@
 
   class AuthorsController {
     private $authorModel;
+    public $isAuthorized;
 
     public function __construct() {
       $this->authorModel = new Author();
+      $userModel = new User();
+      $this->isAuthorized = $userModel->checkIfUserAuthorized();
     }
 
     public function actionIndex() {

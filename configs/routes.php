@@ -15,6 +15,7 @@
     ),
     'UsersController' => array(
       'reg' => 'reg',
-      'auth' => 'auth'
+      'auth' => 'auth',
+      'logout' => 'logout'
     )
   );

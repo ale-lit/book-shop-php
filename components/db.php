@@ -3,7 +3,7 @@
     private static $connection = null;
 
     private function __construct() {
-      require_once('configs/db.php');
+      require('configs/db.php');
       $connect = mysqli_connect($db['HOST'], $db['USER'], $db['PASSWORD'], 
         $db['DB_NAME']);
       mysqli_set_charset($connect, $db['CHARSET']);
@@ -21,11 +21,11 @@
 
     }
 
-    private function __sleep() {
+    public function __sleep() {
 
     }
 
-    private function __wakeup() {
+    public function __wakeup() {
 
     }
   }

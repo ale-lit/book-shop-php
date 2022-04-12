@@ -2,9 +2,12 @@
 
   class GenresController {
     private $genreModel;
+    public $isAuthorized;
 
     public function __construct() {
       $this->genreModel = new Genre();
+      $userModel = new User();
+      $this->isAuthorized = $userModel->checkIfUserAuthorized();
     }
 
     public function actionIndex() {
