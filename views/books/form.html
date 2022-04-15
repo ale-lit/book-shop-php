@@ -1,0 +1,30 @@
+<? include_once("views/common/header.html"); ?>
+<form method="post" class="table">
+    <div class="mb-3">
+        <label class="form-label">Название</label>
+        <input type="text" class="form-control" name="name" value="<?= isset($book) ? $book['book_name'] : '' ?>">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Цена</label>
+        <input type="text" class="form-control" name="price" value="<?= isset($book) ? $book['book_price'] : '' ?>">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Год</label>
+        <input type="text" class="form-control" name="year" value="<?= isset($book) ? $book['book_year'] : '' ?>">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Авторы</label>
+        <select name="authors[]" multiple>
+            <? foreach ($authors as $author): ?>
+            <option <?= (isset($book) && in_array($author['author_id'], $book['authors'])) ? 'selected' : '' ?>
+                value="<?= $author['author_id']; ?>">
+                <?= $author['author_fio']; ?>
+            </option>
+            <? endforeach; ?>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">
+        <?= isset($book) ? 'Изменить' : 'Добавить'; ?>
+    </button>
+</form>
+<? include_once("views/common/footer.html"); ?>
